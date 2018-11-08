@@ -22,7 +22,7 @@ ApiKey is in the .env file
 1. Create employer
 /api/employer/register
 Method – POST
-Body Parameters – company_ame, email, password
+Body Parameters – company_name, email, password
 
 ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
 
