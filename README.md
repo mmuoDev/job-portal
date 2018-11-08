@@ -1,27 +1,99 @@
-# Slim Framework 3 Skeleton Application
+Introduction: 
+aDa is a job portal which connect company and expert freelancer/part-timer. It always keep track of freelancer performance, the more job freelancer completed the more benefit they
+gained. There are 2 ranks for freelancer with 2 different proposal space as monthly limit for
+submitting proposal. The ranks are: rank B with 20 pts and rank A with 40 pts.
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Objective: 
+This API was developed to:
+● Enable company to create and post job as well as view proposal for their job postings
+● Enable freelance to view jobs and submit proposal to it
+● Employer can create job post, then they can either save it as draft or publish it
+● Freelancer can view list of published jobs
+● Freelancer can only submit one proposal to any published job
+● Each application submitted by freelancer will reduce the proposal space by 2pts, so the
+rank B freelancer can only submit 10times max and rank A can submit 20times max
+● Employer can view proposal from freelancer for their job post
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+Documentation:
 
-## Install the Application
+Base URL – localhost:8080
+ApiKey is in the .env file
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+1. Create employer
+/api/employer/register
+Method – POST
+Body Parameters – company_ame, email, password
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+2. Login for employer
+/api/employer/login
+Method – POST
+Body Parameters – email, password
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
 
-To run the application in development, you can run these commands 
+3. Create freelancer
+/api/freelancer/register
+Method – POST
+Body Parameters – name, email, password, rank_id
+NB: rank_id can either be 1 or 2. 
 
-	cd [my-app-name]
-	php composer.phar start
+ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
 
-Run this command in the application directory to run the test suite
+4. Login for freelancer
+/api/freelancer/login
+Method – POST
+Body Parameters – email, password
 
-	php composer.phar test
+ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
 
-That's it! Now go build something cool.
+5. Add a job posting
+/api/jobs/create
+Method – POST
+Body parameters – title, description, status_id, created_by
+
+NB: status_id can either be 1 or 2, that is, published or draft respectively. created_by is the id of the employer
+
+Token must be passed to the header (with ‘token’ as the key) and content-type is json. 
+6. View all published jobs
+/api/jobs/published
+Method – GET
+
+Token must be passed to the header (with ‘token’ as the key) and content-type is json. 
+
+7. Create a job proposal (for freelancer)
+/api/jobs/proposal/create
+Method – POST
+Body parameters – proposal, job_id, freelancer_id
+
+This endpoint ensures a freelancer does not exceed his monthly job proposals allocations.
+
+Token must be passed to the header (with ‘token’ as the key) and content-type is json. 
+
+
+8. Fetch all submitted proposals for a job
+
+/proposals/{job_id}
+Method – GET
+
+NB: job_id is the id of the job posted.
+
+Token must be passed to the header (with ‘token’ as the key) and content-type is json. 
+
+Other notes:
+
+This API was written using the Slim framework. API endpoints are grouped into services – Employer, Freelancer and Job, located in the src/services folder. 
+
+The .env file contains the API key and database configurations. 
+The database schema can be found in the project root folder – job_posting_schema.sql
+
+To get started with testing this API, 
+1. clone or download source code (unzip)
+2. Run composer install
+3. cd to project folder
+4. Run this command “php -S localhost:8080 -t public public/index.php” to start the server.
+
+See https://www.slimframework.com/
+
+Contact Me: radioactive.uche11@gmail.com
