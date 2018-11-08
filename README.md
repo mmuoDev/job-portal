@@ -34,7 +34,7 @@ ApiKey must be passed to the header (with `apiKey` as the key) and content-type 
 Method – POST
 Body Parameters – email, password
 
-ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
+ApiKey must be passed to the header (with `apiKey` as the key) and content-type is json. 
 
 ### Create freelancer
 ```
@@ -53,7 +53,7 @@ Method – POST
 Body Parameters – email, password
 ```
 
-ApiKey must be passed to the header (with ‘apiKey’ as the key) and content-type is json. 
+ApiKey must be passed to the header (with `apiKey` as the key) and content-type is json. 
 
 ### Add a job posting
 ```
@@ -72,7 +72,7 @@ Token must be passed to the header (with `token` as the key) and content-type is
 Method – GET
 ```
 
-Token must be passed to the header (with ‘token’ as the key) and content-type is json. 
+Token must be passed to the header (with `token` as the key) and content-type is json. 
 
 ### Create a job proposal (for freelancer)
 ```
@@ -107,7 +107,7 @@ To get started with testing this API,
 + clone or download source code (unzip)
 + Run composer install
 + cd to project folder
-+ Run this command “php -S localhost:8080 -t public public/index.php” to start the server.
++ Run this command `php -S localhost:8080 -t public public/index.php` to start the server.
 
 See https://www.slimframework.com/
 
